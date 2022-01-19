@@ -37,10 +37,20 @@
             .enter()
             .append("ol")
             .text(d => d.name)
-            .on("mouseover", (_, d) => (renderSubCategory(d.entity)))
+            .on("mouseover", (_, d) => {
+                d3.select("#rootSub")
+                    .selectAll("ol")
+                    .remove();
+                renderSubCategory(d)
+            })
         
         function renderSubCategory(data){
-            data = data.filter(d => d.entity.length != 0)
+            if (data.name == "이색 체험"){
+                renderMoim(data.entity)
+            }
+            data = data.entity.filter(d => d.entity.length != 0)
+
+
             d3.select("#rootMoim")
                 .selectAll("ol")
                 .remove()
