@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorized</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .root {
+            padding : 10px;
+            margin : 3px;
+            border : 1px solid black;
+        }
+        .title{
+            font-size : 125%;
+        }
+        .subtitle {
+            font-family: "Roboto";
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex;">
+        <div class="root"  id="rootMoim"></div>
+    </div>
+    
+    <script type="module">
+        import rawdata from "./noncategory_naamezip.js"
+        console.log(rawdata.all)
+        const data = rawdata.all
+        d3.select("#rootMoim")
+                .selectAll("ol")
+                .data(data)
+                .html(d => (
+                    `<span class="title">${d.h1}</span><br><span class="subtitle">${d.h2}</span>`
+                )
+                )
+            
+            d3.select("#rootMoim")
+                .selectAll("ol")
+                .data(data)
+                .enter()
+                .append("ol")
+                .html(d => (
+                    `<span class="title">${d.h1}</span><br><span class="subtitle">${d.h2}</span>`
+                )
+                )
+
+            d3.select("#rootMoim")
+                .selectAll("ol")
+                .data(data)
+                .exit()
+                .remove();
+        
+    </script>
+</body>
+</html>
